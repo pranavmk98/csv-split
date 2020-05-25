@@ -1,7 +1,7 @@
 # csv-split
 
-csv-split is a high performance CSV Splitter built in Rust. Helpful for quickly
-splitting CSVs into multiple files from the command line.
+`csv-split` is a high performance CSV Splitter built in Rust. Helpful for quickly
+splitting large CSVs into multiple smaller CSVs from the command line.
 
 This was built as a weekend project with the following goals in mind:
 
@@ -30,7 +30,22 @@ Compilation will likely take a few minutes. The binary will end up at `./target/
 
 ## Usage
 
-`csv-split data.csv --max-rows 500`
+```
+USAGE:
+    csv-split [FLAGS] [OPTIONS] <file>
+
+ARGS:
+    <file>    
+
+FLAGS:
+    -h, --help           Prints help information
+    -n, --no-parallel    Run splitting sequentially
+    -V, --version        Prints version information
+
+OPTIONS:
+    -m, --max-rows <max-rows>        Max rows per file [default: 1000]
+    -o, --output-dir <output-dir>    Output directory for generated CSVs [default: output/data]
+```
 
 ## Performance
 
@@ -46,12 +61,15 @@ These benchmarks ran on my admittedly underpowered machine with an Intel i5-8250
 (4 Cores, 8 Threads) and 8GB of memory.
 
 `csv-split`: `0.36s user 0.36s system 170% cpu 0.428 total`
+
 `xsv`: `0.58s user 0.09s system 99% cpu 0.666 total`
+
+`csv-split` (in C): `1.16s user 0.07s system 107% cpu 1.150 total`
 
 ## Future Work
 
 Ideally, the entire CSV would not be loaded into memory at once. Once I learn some
-more about concurrency in Rust, I would like to take a stab at a more threadpool
-like structure, firing off a thread for each batch to process.
+more about concurrency in Rust, I would like to take a stab at a more threadpool-like
+structure, firing off a thread for each batch to process.
 
 Of course, PRs are always welcome :)
