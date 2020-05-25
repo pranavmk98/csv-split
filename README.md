@@ -47,6 +47,8 @@ OPTIONS:
     -o, --output-dir <output-dir>    Output directory for generated CSVs [default: output/data]
 ```
 
+Example: `./csv-split data.csv --max-rows 500`
+
 ## Performance
 
 Some rough benchmarking was performed using the `worldcitiespop.csv` dataset from
@@ -60,11 +62,11 @@ by PerformanceHorizonGroup (written in C).
 These benchmarks ran on my admittedly underpowered machine with an Intel i5-8250U
 (4 Cores, 8 Threads) and 8GB of memory.
 
-`csv-split`: `0.36s user 0.36s system 170% cpu 0.428 total`
-
-`xsv`: `0.58s user 0.09s system 99% cpu 0.666 total`
-
-`csv-split` (in C): `1.16s user 0.07s system 107% cpu 1.150 total`
+| Tool                | `time` Output                                  |
+| ------------------- | ---------------------------------------------- |
+| `csv-split`         | `0.36s user 0.36s system 170% cpu 0.428 total` |
+| `xsv`               | `0.58s user 0.09s system 99% cpu 0.666 total`  |
+| `csv-split`  (in C) | `1.16s user 0.07s system 107% cpu 1.150 total` |
 
 ## Future Work
 
